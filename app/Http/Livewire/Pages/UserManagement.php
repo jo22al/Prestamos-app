@@ -21,7 +21,7 @@ class UserManagement extends Component
             'nombre' => 'required|string|min:6',
             'correo' => 'required|email|unique:users,correo',
             'rol' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|min:5',
         ];
     }
 
@@ -37,7 +37,7 @@ class UserManagement extends Component
         $user = User::create([
             'nombre' => $validatedData['nombre'],
             'correo' => $validatedData['correo'],
-            'password' => ($validatedData['password']),
+            'password' => $validatedData['password'],
         ]);
         $user->assignRole($validatedData['rol']);
         session()->flash('message', 'Usuario creado correctamente');
@@ -65,7 +65,7 @@ class UserManagement extends Component
             'nombre' => 'required|string|min:6',
             'correo' => 'required|email',
             'rol' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required|min:5',
         ]);
         
         User::where('id', $this->user_id)->update([
@@ -107,7 +107,7 @@ class UserManagement extends Component
     {
         $users = User::where('nombre', 'like', '%' . $this->search . '%')->orderBy('id', 'ASC')->paginate(8);
         $users->makeHidden(['password']);
-        $this->password = '';
+        // $this->password = '';
         return view('livewire.pages.user-management', ['users' => $users]);
     }
 }

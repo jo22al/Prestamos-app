@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 @if (session()->has('message'))
-                    <h5 class="alert alert-success">{{ session('message') }}</h5>
+                <h5 class="alert alert-success">{{ session('message') }}</h5>
                 @endif
 
                 <div class="card">
@@ -33,27 +33,25 @@
                             </thead>
                             <tbody>
                                 @forelse ($users as $user)
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->nombre }}</td>
-                                        <td>{{ $user->correo }}</td>
-                                        <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>
-                                        <td>
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#updateUserModal"
-                                                wire:click="editUser({{ $user->id }})" class="btn btn-primary">
-                                                Editar
-                                            </button>
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#deleteUserModal"
-                                                wire:click="deleteUser({{ $user->id }})"
-                                                class="btn btn-danger">Eliminar</button>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->nombre }}</td>
+                                    <td>{{ $user->correo }}</td>
+                                    <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>
+                                    <td>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#updateUserModal"
+                                            wire:click="editUser({{ $user->id }})" class="btn btn-primary">
+                                            Editar
+                                        </button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
+                                            wire:click="deleteUser({{ $user->id }})"
+                                            class="btn btn-danger">Eliminar</button>
+                                    </td>
+                                </tr>
                                 @empty
-                                    <tr>
-                                        <td colspan="5">No se ha encontrado ningún registro</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="5">No se ha encontrado ningún registro</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -65,4 +63,19 @@
             </div>
         </div>
     </div>
+    <script>
+        window.addEventListener('close-modal', event => {
+            const userModal = document.getElementById('userModal');
+            const updateUserModal = document.getElementById('updateUserModal');
+            const deleteUserModal = document.getElementById('deleteUserModal');
+
+            const modal1 = bootstrap.Modal.getInstance(userModal)
+            const modal2 = bootstrap.Modal.getInstance(updateUserModal)
+            const modal3 = bootstrap.Modal.getInstance(deleteUserModal)
+
+            if (modal1 != null) modal1.hide();
+            if (modal2 != null) modal2.hide();
+            if (modal3 != null) modal3.hide();
+        })
+    </script>
 </div>

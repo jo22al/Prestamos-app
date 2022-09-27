@@ -25,7 +25,7 @@
                     </div>
                     <div class="mb-3">
                         <label>Rol</label>
-                        <Select name="role" wire:model="rol" class="form-control form-bord">
+                        <Select name="role" wire:model.lazy="rol" class="form-control form-bord">
                             <option value="">--Seleciona un rol--</option>
                             <option value="Admin">Admin</option>
                             <option value="Secretaria">Secretaria</option>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="mb-3">
                         <label>Rol</label>
-                        <Select name="role" wire:model="rol" class="form-control form-bord">
+                        <Select name="role" wire:model.lazy="rol" class="form-control form-bord">
                             <option value="">--Seleciona un rol--</option>
                             <option value="Admin">Admin</option>
                             <option value="Secretaria">Secretaria</option>

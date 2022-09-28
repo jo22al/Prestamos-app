@@ -7,9 +7,9 @@ use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Billing;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
 use App\Http\Livewire\Notifications;
+use App\Http\Livewire\Pages\UserManagement;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
@@ -46,9 +46,10 @@ Route::get('sign-up', Register::class)->middleware('guest')->name('register');
 Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
 Route::get('user-profile', UserProfile::class)->middleware('auth')->name('user-profile');
-Route::get('user-management', UserManagement::class)->middleware('auth')->name('user-management');
+
 
 Route::group(['middleware' => 'auth'], function () {
+Route::get('usuarios', UserManagement::class)->name('usuarios');
 Route::get('dashboard', Dashboard::class)->name('dashboard');
 // Route::get('billing', Billing::class)->name('billing');
 // Route::get('profile', Profile::class)->name('profile');

@@ -63,9 +63,9 @@
                                     <div class="main-menu f-right d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li class="active"><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="services.html">Services</a></li>
+                                                <li class="active"><a href="index.html">Inicio</a></li>
+                                                <li><a href="about.html">Información</a></li>
+                                                <li><a href="services.html">Servicios</a></li>
                                                 <li><a href="blog.html">Blog</a>
                                                     <ul class="submenu">
                                                         <li><a href="blog.html">Blog</a></li>
@@ -74,7 +74,7 @@
                                                         <li><a href="apply.html">Apply Now</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="contact.html">Contáctanos</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -102,10 +102,10 @@
                     <div class="single-slider">
                         <div class="slider-cap-wrapper">
                             <div class="hero__caption">
-                                <p data-animation="fadeInLeft" data-delay=".2s">Achieve your financial goal</p>
-                                <h1 data-animation="fadeInLeft" data-delay=".5s">Small Business Loans For Daily Expenses.</h1>
+                                <p data-animation="fadeInLeft" data-delay=".2s">¡Logra Tu Meta Financiera!</p>
+                                <h1 data-animation="fadeInLeft" data-delay=".5s">Prestamos Para Pequeñas Empreas Y Emprendedores.</h1>
                                 <!-- Hero Btn -->
-                                <a href="apply.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay=".8s">Apply for Loan</a>
+                                <a href="apply.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay=".8s">SOLICITAR PRESTAMO</a>
                             </div>
                             <div class="hero__img">
                                 <img src="{{ asset('assets/img/template/hero/hero_img.jpg') }} " alt="">
@@ -142,8 +142,8 @@
                                 <span class="flaticon-clock"></span>
                             </div>
                             <div class="caption">
-                                <p>Quick & Easy Loan</p>
-                                <p>Approvals</p>
+                                <p>Prestamo Rápido y Fácil</p>
+                                <p>Aprobaciones</p>
                             </div>
                         </div>
                         <!-- single -->
@@ -152,8 +152,8 @@
                                 <span class="flaticon-like"></span>
                             </div>
                             <div class="caption">
-                                <p>Quick & Easy Loan</p>
-                                <p>Approvals</p>
+                                <p>Soluciones Financieras</p>
+                                <p>Aprobaciones</p>
                             </div>
                         </div>
                         <!-- single -->
@@ -181,8 +181,8 @@
                             <div class="about-caption mb-50">
                                 <!-- Section Tittle -->
                                 <div class="section-tittle mb-35">
-                                    <span>About Our Company</span>
-                                    <h2>Building a Brighter financial Future & Good Support.</h2>
+                                    <span>Sobre Nosotros</span>
+                                    <h2>Contruyendo un Futuro</h2>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, oeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut eniminixm, quis nostrud exercitation ullamco laboris nisi ut aliquip exeaoauat. Duis aute irure dolor in reprehe.</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, oeiusmod tempor incididunt ut labore et dolore magna aliq.</p>

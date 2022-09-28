@@ -8,11 +8,11 @@ use Livewire\Component;
 class Login extends Component
 {
 
-    public $email='';
+    public $correo='';
     public $password='';
 
     protected $rules= [
-        'email' => 'required|email',
+        'correo' => 'required|email',
         'password' => 'required'
 
     ];
@@ -24,7 +24,7 @@ class Login extends Component
 
     public function mount() {
       
-        $this->fill(['email' => 'devon.rowe@example.net', 'password' => '123456789']);    
+        $this->fill(['correo' => 'volkman.michele@example.org', 'password' => '123456789']);    
     }
     
     public function store()
@@ -33,7 +33,7 @@ class Login extends Component
 
         if (! auth()->attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Revise sus credenciales'
+                'correo' => 'Revise sus credenciales'
             ]);
         }
 

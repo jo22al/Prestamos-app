@@ -19,11 +19,11 @@
                                         </button>
                                     </div>
                                     @endif
-                                    <div class="input-group input-group-outline mt-3 @if(strlen($email ?? '') > 0) is-filled @endif">
+                                    <div class="input-group input-group-outline mt-3 @if(strlen($correo ?? '') > 0) is-filled @endif">
                                         <label class="form-label">Correo</label>
-                                        <input wire:model='email' type="email" class="form-control">
+                                        <input wire:model='correo' type="email" class="form-control">
                                     </div>
-                                    @error('email')
+                                    @error('correo')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                     @enderror
 

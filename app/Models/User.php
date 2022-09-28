@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -18,12 +19,10 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'location',
-        'phone',
-        'about',
+        'nombre',
+        'correo',
+        'rol',
+        'password'
     ];
 
     /**
@@ -39,6 +38,15 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Override required, otherwise existing Authentication system will not match credentials
+     * @return mixed
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
     }
 
     /**

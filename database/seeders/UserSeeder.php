@@ -16,6 +16,16 @@ class UserSeeder extends Seeder
     public function run()
     {
         // User::factory(10)->create();
+        User::create([
+            'nombre' => 'Mario Ramirez',
+            'correo' => 'admin@example.com',
+            'password' => '123456789',
+        ])->each(
+            function ($user) {
+                $user->assignRole('Admin');
+            }
+        );
+
         User::factory()->count(1)
             ->create()
             ->each(
@@ -31,15 +41,5 @@ class UserSeeder extends Seeder
                     $user->assignRole('Secretaria');
                 }
             );
-
-        User::create([
-            'nombre' => 'Mario Ramirez',
-            'correo' => 'admin@example.com',
-            'password' => '123456789',
-        ])->each(
-            function ($user) {
-                $user->assignRole('Admin');
-            }
-        );
     }
 }

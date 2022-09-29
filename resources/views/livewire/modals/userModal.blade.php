@@ -25,12 +25,12 @@
                     </div>
                     <div class="mb-3">
                         <label>Rol</label>
-                        <Select name="role" wire:model.lazy="rol" class="form-control form-bord">
-                            <option value="">--Seleciona un rol--</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Secretaria">Secretaria</option>
-
-                        </Select>
+                        <select name="role" wire:model="rol" class="form-control form-bord">
+                            <option value=''>--Seleciona un rol--</option>
+                            @foreach($roles as $role)
+                                <option value={{ $role->name }}>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                         @error('rol')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -82,11 +82,12 @@
                     </div>
                     <div class="mb-3">
                         <label>Rol</label>
-                        <Select name="role" wire:model.lazy="rol" class="form-control form-bord">
-                            <option value="">--Seleciona un rol--</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Secretaria">Secretaria</option>
-                        </Select>
+                        <select name="role" wire:model="rol" class="form-control form-bord">
+                            <option value=''>--Seleciona un rol--</option>
+                            @foreach($roles as $role)
+                                <option value={{ $role->name }}>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                         @error('rol')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserManagement extends Component
 {
@@ -52,7 +53,8 @@ class UserManagement extends Component
             $this->user_id = $user->id;
             $this->nombre = $user->nombre;
             $this->correo = $user->correo;
-            $this->password = $user->password;
+            $this->rol = $user->roles()->pluck('name')->implode(' ');
+            $this->password = '';
         } else {
             return redirect()->to('/usuarios');
         }
@@ -67,7 +69,7 @@ class UserManagement extends Component
             'rol' => 'required|string',
             'password' => 'required|min:5',
         ]);
-        
+
         User::where('id', $this->user_id)->update([
             'nombre' => $validatedData['nombre'],
             'correo' => $validatedData['correo'],
@@ -106,8 +108,7 @@ class UserManagement extends Component
     public function render()
     {
         $users = User::where('nombre', 'like', '%' . $this->search . '%')->orderBy('id', 'ASC')->paginate(8);
-        $users->makeHidden(['password']);
-        // $this->password = '';
-        return view('livewire.pages.user-management', ['users' => $users]);
+        $roles = DB::table('roles')->get();
+        return view('livewire.pages.user-management', ['users' => $users, 'roles' => $roles]);
     }
 }

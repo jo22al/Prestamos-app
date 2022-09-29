@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -30,5 +31,15 @@ class UserSeeder extends Seeder
                     $user->assignRole('Secretaria');
                 }
             );
+
+        User::create([
+            'nombre' => 'Mario Ramirez',
+            'correo' => 'admin@example.com',
+            'password' => '123456789',
+        ])->each(
+            function ($user) {
+                $user->assignRole('Admin');
+            }
+        );
     }
 }

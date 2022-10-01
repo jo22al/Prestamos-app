@@ -19,6 +19,9 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            html {
+                scroll-behavior: smooth;
+            }
         </style>
 		<!-- Template CSS -->
             <link rel="stylesheet" href="{{ asset('assets/css/template/bootstrap.min.css') }} ">
@@ -64,23 +67,15 @@
                                     <div class="main-menu f-right d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li class="active"><a href="index.html">Inicio</a></li>
-                                                <li><a href="about.html">Información</a></li>
-                                                <li><a href="services.html">Servicios</a></li>
-                                                <li><a href="blog.html">Blog</a>
-                                                    <ul class="submenu">
-                                                        <li><a href="blog.html">Blog</a></li>
-                                                        <li><a href="blog_details.html">Blog Details</a></li>
-                                                        <li><a href="elements.html">Element</a></li>
-                                                        <li><a href="apply.html">Apply Now</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="contact.html">Contáctanos</a></li>
+                                                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                                                <li><a href="#servicios">Servicios</a></li>
+                                                <li><a href="#ventajas">Ventajas</a></li>
+                                                <li><a href="#solicitar-prestamo">Solicitar Prestamo</a></li>
                                             </ul>
                                         </nav>
                                     </div>
                                     <div class="header-right-btn f-right d-none d-lg-block">
-                                        <a href="#" class="btn header-btn">+880.762.009.00 </a>
+                                        <a href="#" class="btn header-btn">+502 1234 5678</a>
                                     </div>
                                 </div>
                                 </div>
@@ -143,8 +138,7 @@
                                 <span class="flaticon-clock"></span>
                             </div>
                             <div class="caption">
-                                <p>Prestamo Rápido y Fácil</p>
-                                <p>Aprobaciones</p>
+                                <p>Prestamos Rápidos y Fáciles</p>
                             </div>
                         </div>
                         <!-- single -->
@@ -153,8 +147,7 @@
                                 <span class="flaticon-like"></span>
                             </div>
                             <div class="caption">
-                                <p>Soluciones Financieras</p>
-                                <p>Aprobaciones</p>
+                                <p>Altamente Confiables</p>
                             </div>
                         </div>
                         <!-- single -->
@@ -163,8 +156,7 @@
                                 <span class="flaticon-money"></span>
                             </div>
                             <div class="caption">
-                                <p>Quick & Easy Loan</p>
-                                <p>Approvals</p>
+                                <p>Soluciones Financieras</p>
                             </div>
                         </div>
 
@@ -175,7 +167,7 @@
             </div>
             <!-- slider Area End-->
             <!-- About Law Start-->
-            <div class="about-low-area section-padding2">
+            <div id="sobre-nosotros" class="about-low-area section-padding2">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
@@ -206,14 +198,14 @@
             </div>
             <!-- About Law End-->
             <!-- Services Area Start -->
-            <div class="services-area pt-150 pb-150" data-background=" {{ asset('assets/img/template/gallery/section_bg02.jpg') }} ">
+            <div id="servicios" class="services-area pt-150 pb-150" data-background=" {{ asset('assets/img/template/gallery/section_bg02.jpg') }} ">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-10">
                             <!-- Section Tittle -->
                             <div class="section-tittle text-center mb-80">
-                                <span>Services that we are providing</span>
-                                <h2>High Performance Services For All Industries.</h2>
+                                <span>Servicios que promovemos</span>
+                                <h2>Alto rendimiento y efectividad</h2>
                             </div>
                         </div>
                     </div>
@@ -268,7 +260,7 @@
             </div>
             <!-- Services Area End -->
             <!-- Support Company Start-->
-            <div class="support-company-area section-padding3 fix">
+            <div id="ventajas" class="support-company-area section-padding3 fix">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-6 col-lg-6">
@@ -314,7 +306,7 @@
             </div>
             <!-- Support Company End-->
             <!-- Application Area Start -->
-            <div class="application-area pt-150 pb-140" data-background="{{ asset('assets/img/gallery/section_bg03.jpg') }}">
+            <div id="solicitar-prestamo" class="application-area pt-150 pb-140" data-background="{{ asset('assets/img/template/gallery/section_bg03.jpg') }}">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-10">
@@ -363,93 +355,8 @@
                 </div>
             </div>
             <!-- Application Area End -->
-            <!--Team Ara Start -->
-            <div class="team-area section-padding30">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="cl-xl-7 col-lg-8 col-md-10">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle text-center mb-70">
-                                <span>Our Loan Section Team Mambers</span>
-                                <h2>Take a look to our professional team members.</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-team mb-30">
-                                <div class="team-img">
-                                    <img src=" {{ asset('assets/img/template/gallery/single2.jpgssets/img/gallery/home_blog1.png') }} " alt="">
-                                    <!-- Blog Social -->
-                                    <div class="team-social">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                                    </div>
-                                </div>
-                                <div class="team-caption">
-                                    <h3><a href="#">Bruce Roberts</a></h3>
-                                    <p>Volunteer leader</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-team mb-30">
-                                <div class="team-img">
-                                    <img src=" {{ asset('assets/img/template/gallery/home_blog2.png') }} " alt="">
-                                    <!-- Blog Social -->
-                                    <div class="team-social">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                                    </div>
-                                </div>
-                                <div class="team-caption">
-                                    <h3><a href="#">Bruce Roberts</a></h3>
-                                    <p>Volunteer leader</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-team mb-30">
-                                <div class="team-img">
-                                    <img src=" {{ asset('assets/img/template/gallery/home_blog3.png') }} " alt="">
-                                    <!-- Blog Social -->
-                                    <div class="team-social">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                                    </div>
-                                </div>
-                                <div class="team-caption">
-                                    <h3><a href="#">Bruce Roberts</a></h3>
-                                    <p>Volunteer leader</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-team mb-30">
-                                <div class="team-img">
-                                    <img src=" {{ asset('assets/img/template/gallery/home_blog4.png') }} " alt="">
-                                    <!-- Blog Social -->
-                                    <div class="team-social">
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                                    </div>
-                                </div>
-                                <div class="team-caption">
-                                    <h3><a href="#">Bruce Roberts</a></h3>
-                                    <p>Volunteer leader</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Team Ara End -->
             <!-- Testimonial Start -->
-            <div class="testimonial-area t-bg testimonial-padding">
+            <div class="testimonial-area t-bg testimonial-padding mt-5">
                 <div class="container ">
                 <div class="row d-flex justify-content-center">
                         <div class="col-xl-11 col-lg-11 col-md-9">
@@ -502,56 +409,11 @@
                 </div>
             </div>
             <!-- Testimonial End -->
-            <!-- Blog Ara Start -->
-            <div class="home-blog-area section-padding30">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-7 col-md-10">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle text-center mb-70">
-                                <span>News form our latest blog</span>
-                                <h2>News from around the world selected by us.</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6">
-                            <!-- single-david -->
-                            <div class="single-blogs mb-30">
-                                <div class="blog-images">
-                                    <img src=" {{ asset('assets/img/template/gallery/blog1.png') }} " alt="">
-                                </div>
-                                <div class="blog-captions">
-                                    <span>January 28, 2020</span>
-                                    <h2><a href="blog_details.html">The advent of pesticides brought
-                                        in its benefits and pitfalls.</a></h2>
-                                    <p>October 6, a2020by Steve</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6">
-                            <!-- single-david -->
-                            <div class="single-blogs mb-30">
-                                <div class="blog-images">
-                                    <img src=" {{ asset('assets/img/template/gallery/blog2.png') }} " alt="">
-                                </div>
-                                <div class="blog-captions">
-                                    <span>January 28, 2020</span>
-                                    <h2><a href="blog_details.html">The advent of pesticides brought
-                                        in its benefits and pitfalls.</a></h2>
-                                    <p>October 6, a2020by Steve</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Ara End -->
 
         </main>
         <footer>
             <!-- Footer Start-->
-            <div class="footer-area">
+            <div class="footer-area t-bg">
                 <div class="container">
                 <div class="footer-top footer-padding">
                         <div class="row justify-content-between">
@@ -560,7 +422,7 @@
                                     <div class="single-footer-caption mb-30">
                                         <!-- logo -->
                                         <div class="footer-logo">
-                                            <a href="index.html"><img src=" {{ asset('assets/img/template/logo/logo2_footer.png') }} " alt=""></a>
+                                            <a href="#"><img src=" {{ asset('assets/img/template/logo/logo2_footer.png') }} " alt=""></a>
                                         </div>
                                         <div class="footer-pera">
                                             <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing</p>
@@ -614,17 +476,8 @@
                             <div class="col-xl-9 col-lg-8">
                                 <div class="footer-copy-right">
                                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4">
-                                <!-- Footer Social -->
-                                <div class="footer-social f-right">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fas fa-globe"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -635,7 +488,7 @@
         </footer>
         <!-- Scroll Up -->
         <div id="back-top" >
-            <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+            <a title="Go to Top" href="#">⬆</a>
         </div>
 
 

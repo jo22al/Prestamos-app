@@ -1,5 +1,6 @@
 <!-- Insert Modal -->
-<div wire:ignore.self class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,14 +14,14 @@
                         <label>Nombre</label>
                         <input type="text" wire:model.lazy="nombre" class="form-control form-bord">
                         @error('nombre')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label>Correo</label>
                         <input type="email" wire:model.lazy="correo" class="form-control form-bord">
                         @error('correo')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -28,18 +29,18 @@
                         <select name="role" wire:model="rol" class="form-control form-bord">
                             <option value=''>--Seleciona un rol--</option>
                             @foreach($roles as $role)
-                                <option value={{ $role->name }}>{{ $role->name }}</option>
+                            <option value={{ $role->name }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                         @error('rol')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label>Contraseña</label>
                         <input type="password" wire:model.lazy="password" class="form-control form-bord">
                         @error('password')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -70,14 +71,14 @@
                         <label>Nombre</label>
                         <input type="text" wire:model.lazy="nombre" class="form-control form-bord">
                         @error('nombre')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label>Correo</label>
                         <input type="email" wire:model.lazy="correo" class="form-control form-bord">
                         @error('correo')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -85,18 +86,18 @@
                         <select name="role" wire:model="rol" class="form-control form-bord">
                             <option value=''>--Seleciona un rol--</option>
                             @foreach($roles as $role)
-                                <option value={{ $role->name }}>{{ $role->name }}</option>
+                            <option value={{ $role->name }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                         @error('rol')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label>Contraseña</label>
                         <input type="password" wire:model.lazy="password" class="form-control form-bord">
                         @error('password')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -112,8 +113,8 @@
 </div>
 
 <!-- Delete User Modal -->
-<div wire:ignore.self class="modal fade" id="deleteUserModal" tabindex="-1"
-    aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

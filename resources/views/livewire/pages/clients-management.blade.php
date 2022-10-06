@@ -26,8 +26,9 @@
                                 <tr>
                                     <th>DPI</th>
                                     <th>Nombres</th>
-                                    <th>Apelldios</th>
+                                    <th>Apellidos</th>
                                     <th>Celular</th>
+                                    <th>Foto</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -39,6 +40,16 @@
                                     <td>{{ $client->apellidos }}</td>
                                     <td>{{ $client->celular }}</td>
                                     <td>
+                                        <div class="avatar avatar-xl position-relative">
+                                            {{-- <img src="/storage/{{$client->foto}}" alt="profile_image" --}}
+                                            <img src="{{$client->foto}}" alt="profile_image"
+                                            class="w-100 border-radius-lg shadow-sm">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('/clientes/' . $client->id) }}"
+                                            class="btn btn-xs btn-success pull-right">Ver</a>
+
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#updateClientModal"
                                             wire:click="editClient({{ $client->id }})" class="btn btn-primary">
                                             Editar

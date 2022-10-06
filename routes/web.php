@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
 use App\Http\Livewire\Pages\ClientsManagement;
+use App\Http\Livewire\Pages\CuotasCalc;
+use App\Http\Livewire\Pages\ShowClient;
 use App\Http\Livewire\Pages\UserManagement;
 
 /*
@@ -43,4 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('usuarios', UserManagement::class)->name('usuarios');
 Route::get('dashboard', Dashboard::class)->name('dashboard');
 Route::get('clientes', ClientsManagement::class)->name('clientes');
+Route::get('clientes/{id}', ShowClient::class)->name('cliente');
+Route::get('cuotas', CuotasCalc::class)->name('cuotas');
 });

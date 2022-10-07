@@ -12,7 +12,8 @@ class ShowClient extends Component
 
     public function mount($id)
     {
-        $this->client = Client::findOrFail($id);
+        $client = Client::findOrFail($id);
+        $this->client = $client;
     }
 
     public function render()

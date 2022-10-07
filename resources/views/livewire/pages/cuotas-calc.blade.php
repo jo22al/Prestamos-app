@@ -34,7 +34,7 @@
 
                                     <div class="row">
                                         <div class="col-sm mb-3">
-                                            <label>Interes</label>
+                                            <label>Tipo de Interes</label>
                                             <select name="interes" wire:model="interes" class="form-control form-bord">
                                                 <option value=''>--Selecione--</option>
                                                 @foreach($intereses as $interes)
@@ -45,8 +45,9 @@
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+
                                         <div class="col-sm mb-3">
-                                            <label>Porcentaje</label>
+                                            <label>Fijo</label>
                                             <select name="porcentaje" wire:model="porcentaje"
                                                 class="form-control form-bord">
                                                 <option value=''>--Selecione--</option>
@@ -58,6 +59,19 @@
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-sm mb-3">
+                                            <div class="col-sm mb-3">
+                                                <label>Porcentaje</label>
+                                                <input type="text" wire:model.lazy="porcentaje"
+                                                    class="form-control form-bord">
+                                                @error('porcentaje')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
                                     <div class="mb-3">
@@ -118,15 +132,51 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" wire:click=""
+                                    <button type="button" class="btn btn-primary" wire:click="calcularCuotas()"
                                         data-bs-dismiss="modal">Calcular Cuotas</button>
                                     <button type="submit" class="btn btn-success">Guardar</button>
                                 </div>
                             </form>
                         </div>
+
+                        @if (!is_null($cuotas))
+                        <div class="card-body">
+                            <table class="table table-borderd table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha de Pago</th>
+                                        <th>Cuota</th>
+                                        <th>Interes</th>
+                                        <th>Total Interes</th>
+                                        <th>Capital</th>
+                                        <th>Saldo</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($cuotas as $cuota => $value)
+                                    <tr>
+                                        <td>{{ $value->fecha_pago }}</td>
+                                        <td>{{ $value->monto_couta }}</td>
+                                        <td>{{ $value->interes }}</td>
+                                        <td>{{ $value->total_interes }}</td>
+                                        <td>{{ $value->capital }}</td>
+                                        <td>{{ $value->saldo }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="5">No se ha encontrado ningún registro</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            <div>
+                            </div>
+                        </div>
+                        @endif
+
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>

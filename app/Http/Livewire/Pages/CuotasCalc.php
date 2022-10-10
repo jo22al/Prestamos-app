@@ -98,6 +98,7 @@ class CuotasCalc extends Component
             $this->periocidad_pago
         ));
 
+        $this->cuotas = $result;
         $pdf = Pdf::loadView('livewire.export.cuotas', ['result' => $result])->output();
 
         return response()->streamDownload(

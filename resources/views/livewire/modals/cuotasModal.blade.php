@@ -1,6 +1,6 @@
 <!-- Insert Modal -->
-<div wire:ignore.self class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="cuotasModal" tabindex="-1" aria-labelledby="cuotasModalLabel"
-    aria-hidden="true">
+<div wire:ignore.self class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="cuotasModal" tabindex="-1"
+    aria-labelledby="cuotasModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,44 +9,53 @@
                     wire:click="closeModal"></button>
             </div>
             <div class="modal-footer">
+                <div class="container">
+                    <div class="row row-cols-1">
+                        <div class="col">
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-primary"
+                                    wire:click="downloadPdf()">Descargar</button>
+                                <button type="button" class="btn btn-secondary" wire:click="closeModal"
+                                    data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            @if (!is_null($cuotas))
+                                <div class="card-body">
+                                    <table class="table table-borderd table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha de Pago</th>
+                                                <th>Cuota</th>
+                                                <th>Interes</th>
+                                                <th>Total Interes</th>
+                                                <th>Capital</th>
+                                                <th>Saldo</th>
 
-                @if (!is_null($cuotas))
-                    <div class="card-body">
-                        <table class="table table-borderd table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Fecha de Pago</th>
-                                    <th>Cuota</th>
-                                    <th>Interes</th>
-                                    <th>Total Interes</th>
-                                    <th>Capital</th>
-                                    <th>Saldo</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($cuotas as $cuota => $value)
-                                    <tr>
-                                        <td>{{ $value->fecha_pago }}</td>
-                                        <td>{{ $value->monto_couta }}</td>
-                                        <td>{{ $value->interes }}</td>
-                                        <td>{{ $value->total_interes }}</td>
-                                        <td>{{ $value->capital }}</td>
-                                        <td>{{ $value->saldo }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5">No se ha encontrado ningún registro</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($cuotas as $cuota => $value)
+                                                <tr>
+                                                    <td>{{ $value->fecha_pago }}</td>
+                                                    <td>{{ $value->monto_couta }}</td>
+                                                    <td>{{ $value->interes }}</td>
+                                                    <td>{{ $value->total_interes }}</td>
+                                                    <td>{{ $value->capital }}</td>
+                                                    <td>{{ $value->saldo }}</td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="5">No se ha encontrado ningún registro</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                @endif
-
-                <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                    data-bs-dismiss="modal">Cerrar</button>
-
+                </div>
             </div>
         </div>
     </div>

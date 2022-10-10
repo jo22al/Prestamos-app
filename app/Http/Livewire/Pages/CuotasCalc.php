@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use DB;
 use App\Models\Client;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -81,6 +82,28 @@ class CuotasCalc extends Component
     public function closeModal()
     {
         $this->cuotas = null;
+    }
+
+    public function downloadPdf()
+    {
+
+        $this->cuotas = null;
+
+        $result = DB::select('call SP_CUOTAS(?,?,?,?,?,?)', array(
+            $this->monto,
+            $this->monto_cuota,
+            $this->selectedInteres,
+            $this->porcentaje,
+            $this->fecha_pago,
+            $this->periocidad_pago
+        ));
+
+        $pdf = Pdf::loadView('livewire.export.cuotas', ['result' => $result])->output();
+
+        return response()->streamDownload(
+            fn () => print($pdf),
+            'descarga.pdf'
+        );
     }
 
     public function render()

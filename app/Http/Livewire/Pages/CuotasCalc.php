@@ -28,6 +28,8 @@ class CuotasCalc extends Component
         $mora,
         $id_client;
 
+    public $cuota_minima;
+
 
     protected function rules()
     {
@@ -56,10 +58,11 @@ class CuotasCalc extends Component
 
     public function calcularCuotas()
     {
+        $this->checkMonto();
 
         $this->validate([
             'monto' => 'required',
-            'monto_cuota' => 'required',
+            'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
             'selectedInteres' => 'required',
             'porcentaje' => 'required',
             'fecha_pago' => 'required',
@@ -78,6 +81,38 @@ class CuotasCalc extends Component
         // $result = DB::select("call SP_CUOTAS(40000,3000, 'FIJO', 500, '2022-10-01', 'M')");
         $this->cuotas = $result;
     }
+
+
+    public function checkMonto()
+    {
+
+        $this->validate([
+            'monto' => 'required',
+            'monto_cuota' => 'required',
+            'selectedInteres' => 'required',
+            'porcentaje' => 'required',
+        ]);
+
+
+        if ($this->selectedInteres == 'PORCENTAJE') {
+            $inter = $this->porcentaje / 100;
+            $totInteres = $inter * $this->monto;
+        }
+
+        if ($this->selectedInteres == 'FIJO') {
+            $inter = $this->porcentaje;
+            $totInteres = $inter;
+        }
+
+        $cap = $this->monto_cuota - $totInteres;
+
+        if ($cap <= 0) {
+            $requerido = $this->monto_cuota + abs($cap) + 100;
+            $this->cuota_minima = 'min:' . $requerido;
+        }
+    }
+
+
 
     public function closeModal()
     {

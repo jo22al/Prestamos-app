@@ -14,8 +14,6 @@
                             <form wire:submit.prevent="savePrestamo">
                                 <div class="modal-body">
 
-                                    {{$cuota_minima ?? ''}}
-
                                     <div class="row">
                                         <div class="col-sm mb-3">
                                             <label>Monto</label>

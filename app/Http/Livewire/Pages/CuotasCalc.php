@@ -60,14 +60,22 @@ class CuotasCalc extends Component
     {
         $this->checkMonto();
 
-        $this->validate([
-            'monto' => 'required',
-            'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
-            'selectedInteres' => 'required',
-            'porcentaje' => 'required',
-            'fecha_pago' => 'required',
-            'periocidad_pago' => 'required',
-        ]);
+        try {
+            $this->validate([
+                'monto' => 'required',
+                'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
+                'selectedInteres' => 'required',
+                'porcentaje' => 'required',
+                'fecha_pago' => 'required',
+                'periocidad_pago' => 'required',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Use $e->errors() to find the validationerrors
+            // Add your custom logic here. 
+            $this->dispatchBrowserEvent('close-modal');
+            // Re-throw the exception once done
+            throw $e;
+        }
 
         $result = DB::select('call SP_CUOTAS(?,?,?,?,?,?)', array(
             $this->monto,
@@ -86,13 +94,20 @@ class CuotasCalc extends Component
     public function checkMonto()
     {
 
-        $this->validate([
-            'monto' => 'required',
-            'monto_cuota' => 'required',
-            'selectedInteres' => 'required',
-            'porcentaje' => 'required',
-        ]);
-
+        try {
+            $this->validate([
+                'monto' => 'required',
+                'monto_cuota' => 'required',
+                'selectedInteres' => 'required',
+                'porcentaje' => 'required',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Use $e->errors() to find the validationerrors
+            // Add your custom logic here. 
+            $this->dispatchBrowserEvent('close-modal');
+            // Re-throw the exception once done
+            throw $e;
+        }
 
         if ($this->selectedInteres == 'PORCENTAJE') {
             $inter = $this->porcentaje / 100;
@@ -107,6 +122,7 @@ class CuotasCalc extends Component
         $cap = $this->monto_cuota - $totInteres;
 
         if ($cap <= 0) {
+            $this->dispatchBrowserEvent('close-modal');
             $requerido = $this->monto_cuota + abs($cap) + 100;
             $this->cuota_minima = 'min:' . $requerido;
         }

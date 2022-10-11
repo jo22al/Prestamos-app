@@ -149,3 +149,13 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <script>
+        window.addEventListener('close-modal', event => {
+            const cuotasModal = document.getElementById('cuotasModal');
+            const modal1 = bootstrap.Modal.getInstance(cuotasModal)
+            if (modal1 != null) modal1.hide();
+        })
+    </script>
+</div>

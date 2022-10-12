@@ -12,7 +12,9 @@ class Prestamo extends Model
     protected $fillable = [
         'monto',
         'monto_cuota',
+        'interes_seleccionado',
         'interes',
+        'saldo',
         'fecha_pago',
         'periocidad_pago',
         'img_auto',
@@ -20,4 +22,8 @@ class Prestamo extends Model
         'mora',
         'id_client'
     ];
+
+    public function client() {
+        return $this->belongsTo(Client::class, 'id_client');
+    }
 }

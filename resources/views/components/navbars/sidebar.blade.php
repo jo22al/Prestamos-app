@@ -57,6 +57,16 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'prestamos' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('prestamos') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">person</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Prestamos</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'cuotas' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('cuotas') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use DB;
 use App\Models\Client;
+use App\Models\Prestamo;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,8 +20,8 @@ class CuotasCalc extends Component
     public
         $monto,
         $monto_cuota,
-        $selectedInteres,
-        $porcentaje,
+        $interes_seleccionado,
+        $interes,
         $fecha_pago,
         $periocidad_pago,
         $img_auto,
@@ -36,13 +37,12 @@ class CuotasCalc extends Component
         return [
             'monto' => 'required',
             'monto_cuota' => 'required',
-            'selectedInteres' => 'required',
-            'porcentaje' => 'required',
+            'interes_seleccionado' => 'required',
+            'interes' => 'required',
             'fecha_pago' => 'required',
             'periocidad_pago' => 'required',
             'img_auto' => 'image|mimes:jpg,jpeg,png',
-            'id_client' => 'required',
-            'selectedInteres' => 'required'
+            'id_client' => 'required'
         ];
     }
 
@@ -53,35 +53,62 @@ class CuotasCalc extends Component
 
     public function savePrestamo()
     {
-        $validatedData = $this->validate();
+        $this->cuotas = null;
+        $this->checkMonto();
+        $validatedData = $this->validate([
+            'monto' => 'required',
+            'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
+            'interes_seleccionado' => 'required',
+            'interes' => 'required',
+            'fecha_pago' => 'required',
+            'periocidad_pago' => 'required',
+            'img_auto' => 'image|mimes:jpg,jpeg,png',
+            'id_client' => 'required'
+        ]);
+
+        if (!empty($validatedData['img_auto'])) {
+            $validatedData['img_auto'] = $this->img_auto->store('autos', 'public');
+        }
+
+        if(!empty($validatedData['monto'])) {
+            $validatedData['saldo'] = $validatedData['monto'];
+        }
+
+        Prestamo::create($validatedData);
+        session()->flash('message', 'Prestamos registrado correctamente');
+        $this->resetInput();
+    }
+
+    public function resetInput()
+    {
+        $this->monto = '';
+        $this->monto_cuota = '';
+        $this->interes_seleccionado = '';
+        $this->interes = '';
+        $this->fecha_pago = '';
+        $this->periocidad_pago = '';
+        $this->img_auto = '';
+        $this->id_client = '';
     }
 
     public function calcularCuotas()
     {
         $this->checkMonto();
 
-        try {
-            $this->validate([
-                'monto' => 'required',
-                'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
-                'selectedInteres' => 'required',
-                'porcentaje' => 'required',
-                'fecha_pago' => 'required',
-                'periocidad_pago' => 'required',
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Use $e->errors() to find the validationerrors
-            // Add your custom logic here. 
-            $this->dispatchBrowserEvent('close-modal');
-            // Re-throw the exception once done
-            throw $e;
-        }
+        $this->validate([
+            'monto' => 'required',
+            'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
+            'interes_seleccionado' => 'required',
+            'interes' => 'required',
+            'fecha_pago' => 'required',
+            'periocidad_pago' => 'required',
+        ]);
 
         $result = DB::select('call SP_CUOTAS(?,?,?,?,?,?)', array(
             $this->monto,
             $this->monto_cuota,
-            $this->selectedInteres,
-            $this->porcentaje,
+            $this->interes_seleccionado,
+            $this->interes,
             $this->fecha_pago,
             $this->periocidad_pago
         ));
@@ -94,28 +121,20 @@ class CuotasCalc extends Component
     public function checkMonto()
     {
 
-        try {
-            $this->validate([
-                'monto' => 'required',
-                'monto_cuota' => 'required',
-                'selectedInteres' => 'required',
-                'porcentaje' => 'required',
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Use $e->errors() to find the validationerrors
-            // Add your custom logic here. 
-            $this->dispatchBrowserEvent('close-modal');
-            // Re-throw the exception once done
-            throw $e;
-        }
+        $this->validate([
+            'monto' => 'required',
+            'monto_cuota' => 'required',
+            'interes_seleccionado' => 'required',
+            'interes' => 'required',
+        ]);
 
-        if ($this->selectedInteres == 'PORCENTAJE') {
-            $inter = $this->porcentaje / 100;
+        if ($this->interes_seleccionado == 'PORCENTAJE') {
+            $inter = $this->interes / 100;
             $totInteres = $inter * $this->monto;
         }
 
-        if ($this->selectedInteres == 'FIJO') {
-            $inter = $this->porcentaje;
+        if ($this->interes_seleccionado == 'FIJO') {
+            $inter = $this->interes;
             $totInteres = $inter;
         }
 
@@ -140,28 +159,20 @@ class CuotasCalc extends Component
 
         $this->cuotas = null;
 
-        try {
-            $this->validate([
-                'monto' => 'required',
-                'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
-                'selectedInteres' => 'required',
-                'porcentaje' => 'required',
-                'fecha_pago' => 'required',
-                'periocidad_pago' => 'required',
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Use $e->errors() to find the validationerrors
-            // Add your custom logic here. 
-            $this->dispatchBrowserEvent('close-modal');
-            // Re-throw the exception once done
-            throw $e;
-        }
+        $this->validate([
+            'monto' => 'required',
+            'monto_cuota' => ['required', 'numeric', $this->cuota_minima],
+            'interes_seleccionado' => 'required',
+            'interes' => 'required',
+            'fecha_pago' => 'required',
+            'periocidad_pago' => 'required',
+        ]);
 
         $result = DB::select('call SP_CUOTAS(?,?,?,?,?,?)', array(
             $this->monto,
             $this->monto_cuota,
-            $this->selectedInteres,
-            $this->porcentaje,
+            $this->interes_seleccionado,
+            $this->interes,
             $this->fecha_pago,
             $this->periocidad_pago
         ));

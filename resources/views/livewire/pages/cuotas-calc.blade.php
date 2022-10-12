@@ -6,6 +6,9 @@
         <div class="card card-body mx-3 mx-md-4 mt-105">
             <div class="row">
                 <div class="col-12 col-xl-8 col-lg-12">
+                    @if (session()->has('message'))
+                    <h5 class="alert alert-success">{{ session('message') }}</h5>
+                    @endif
                     <div class="card card-plain h-100">
                         <div class="card-header pb-0 p-3">
                             <h6 class="mb-0">Calculo de cuotas</h6>
@@ -36,41 +39,40 @@
                                     <div class="row">
                                         <div class="col-sm mb-3">
                                             <label>Tipo de Interes</label>
-                                            <select name="selectedInteres" wire:model="selectedInteres"
+                                            <select name="interes_seleccionado" wire:model="interes_seleccionado"
                                                 class="form-control form-bord">
                                                 <option value=''>--Selecione--</option>
                                                 @foreach ($intereses as $interes)
                                                 <option value={{ $interes }}>{{ $interes }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('selectedInteres')
+                                            @error('interes_seleccionado')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
 
-                                        @if ($selectedInteres == 'PORCENTAJE')
+                                        @if ($interes_seleccionado == 'PORCENTAJE')
                                         <div class="col-sm mb-3">
                                             <label>Interes</label>
-                                            <select name="porcentaje" wire:model="porcentaje"
-                                                class="form-control form-bord">
+                                            <select name="interes" wire:model="interes" class="form-control form-bord">
                                                 <option value=''>--Selecione--</option>
                                                 @foreach ($porcentajes as $porcentaje)
                                                 <option value={{ $porcentaje }}>{{ $porcentaje }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('porcentaje')
+                                            @error('interes')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         @endif
 
-                                        @if ($selectedInteres == 'FIJO')
+                                        @if ($interes_seleccionado == 'FIJO')
                                         <div class="col-sm mb-3">
                                             <div class="col-sm mb-3">
                                                 <label>Interes</label>
-                                                <input type="number" wire:model.lazy="porcentaje"
+                                                <input type="number" wire:model.lazy="interes"
                                                     class="form-control form-bord">
-                                                @error('porcentaje')
+                                                @error('interes')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

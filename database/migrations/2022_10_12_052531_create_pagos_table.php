@@ -13,20 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prestamos', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_prestamo');
             $table->float('monto');
-            $table->float('monto_cuota');
-            $table->string('interes_seleccionado');
-            $table->float('interes');
-            $table->float('saldo');
             $table->date('fecha_pago');
-            $table->string('periocidad_pago');
+            $table->string('tipo_de_evidencia');
             $table->string('img_auto');
-            $table->string('estado_prestamo')->default('Activo');
-            $table->float('mora')->default(0);
-            $table->unsignedBigInteger('id_client');
-            $table->foreign('id_client')->references('id')->on('clients');
+            $table->foreign('id_prestamo')->references('id')->on('prestamos');
             $table->timestamps();
         });
     }
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prestamos');
+        Schema::dropIfExists('pagos');
     }
 };

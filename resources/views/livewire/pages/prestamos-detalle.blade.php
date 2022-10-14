@@ -61,6 +61,11 @@
                         </div>
 
                         <div>
+                            <h5>Interes</h5>
+                            <p>{{$prestamo->interes}}</p>
+                        </div>
+
+                        <div>
                             <h5>Pioricidad</h5>
                             <p>{{$prestamo->periocidad_pago}}</p>
                         </div>
@@ -72,6 +77,46 @@
                     </div>
                 </div>
             </div>
+
+            <div>
+                <h4 class="text-center">Pagos</h4>
+                <table class="table table-borderd table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cuota</th>
+                            <th>Fecha</th>
+                            <th>Saldo Anterior</th>
+                            <th>Nuevo Saldo</th>
+                            <th>Tipo de evidencia</th>
+                            <th>Evidencia</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($prestamo->pagos as $row)
+                        <tr>
+                            <td>{{ $row->monto }}</td>
+                            <td>{{ $row->fecha_pago }}</td>
+                            <td>{{ $row->saldo_anterior }}</td>
+                            <td>{{ $row->nuevo_saldo }}</td>
+                            <td>{{ $row->tipo_de_evidencia }}</td>
+                            <td>
+                                <div class="avatar avatar-xl position-relative">
+                                    <img src="/storage/{{$row->img_deposito}}" alt="profile_image"
+                                        class="w-100 border-radius-lg shadow-sm">
+                                </div>
+                            </td>
+
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5">No se ha encontrado ningún registro</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

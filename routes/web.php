@@ -8,6 +8,7 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
 use App\Http\Livewire\Pages\ClientsManagement;
 use App\Http\Livewire\Pages\CuotasCalc;
+use App\Http\Livewire\Pages\Pagos;
 use App\Http\Livewire\Pages\Prestamos;
 use App\Http\Livewire\Pages\PrestamosDetalle;
 use App\Http\Livewire\Pages\ShowClient;
@@ -51,4 +52,6 @@ Route::get('clientes/{id}', ShowClient::class)->name('cliente');
 Route::get('cuotas', CuotasCalc::class)->name('cuotas');
 Route::get('prestamos', Prestamos::class)->name('prestamos');
 Route::get('prestamos/{id}', PrestamosDetalle::class)->name('prestamo');
+Route::get('pagos', Pagos::class)->name('pagos');
+
 });

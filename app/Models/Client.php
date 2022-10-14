@@ -30,4 +30,9 @@ class Client extends Model
         'referencia_correo',
         'referencia_telefono'
     ];
+
+    public function prestamos()
+    {
+        return $this->hasMany(Prestamo::class, 'id_client');
+    }
 }

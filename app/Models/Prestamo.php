@@ -23,7 +23,13 @@ class Prestamo extends Model
         'id_client'
     ];
 
-    public function client() {
+    public function client()
+    {
         return $this->belongsTo(Client::class, 'id_client');
+    }
+
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class, 'id_prestamo');
     }
 }

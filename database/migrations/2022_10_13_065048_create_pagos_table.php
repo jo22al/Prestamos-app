@@ -19,7 +19,9 @@ return new class extends Migration
             $table->float('monto');
             $table->date('fecha_pago');
             $table->string('tipo_de_evidencia');
-            $table->string('img_auto');
+            $table->string('img_deposito');
+            $table->String('saldo_anterior');
+            $table->String('nuevo_saldo');
             $table->foreign('id_prestamo')->references('id')->on('prestamos');
             $table->timestamps();
         });

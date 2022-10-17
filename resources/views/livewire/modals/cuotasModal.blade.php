@@ -20,39 +20,37 @@
                             </div>
                         </div>
                         <div class="col">
-                            @if (!is_null($cuotas))
-                                <div class="card-body">
-                                    <table class="table table-borderd table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Fecha de Pago</th>
-                                                <th>Cuota</th>
-                                                <th>Interes</th>
-                                                <th>Total Interes</th>
-                                                <th>Capital</th>
-                                                <th>Saldo</th>
+                            <div class="card-body">
+                                <table class="table table-borderd table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha de Pago</th>
+                                            <th>Cuota</th>
+                                            <th>Interes</th>
+                                            <th>Total Interes</th>
+                                            <th>Capital</th>
+                                            <th>Saldo</th>
 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($cuotas as $cuota => $value)
+                                            <tr>
+                                                {{-- <td>{{ $value->fecha_pago }}</td> --}}
+                                                <td>{{ $value->monto_couta }}</td>
+                                                <td>{{ $value->interes }}</td>
+                                                <td>{{ $value->total_interes }}</td>
+                                                <td>{{ $value->capital }}</td>
+                                                <td>{{ $value->saldo }}</td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($cuotas as $cuota => $value)
-                                                <tr>
-                                                    <td>{{ $value->fecha_pago }}</td>
-                                                    <td>{{ $value->monto_couta }}</td>
-                                                    <td>{{ $value->interes }}</td>
-                                                    <td>{{ $value->total_interes }}</td>
-                                                    <td>{{ $value->capital }}</td>
-                                                    <td>{{ $value->saldo }}</td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="5">No se ha encontrado ningún registro</td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            @endif
+                                        @empty
+                                            <tr>
+                                                <td colspan="5">No se ha encontrado ningún registro</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ class CuotasCalc extends Component
 
     use WithFileUploads;
 
-    public $cuotas = null;
+    public $cuotas = [];
 
     public
         $monto,
@@ -53,7 +53,7 @@ class CuotasCalc extends Component
 
     public function savePrestamo()
     {
-        $this->cuotas = null;
+        $this->cuotas = [];
         $this->checkMonto();
         $validatedData = $this->validate([
             'monto' => 'required',
@@ -76,6 +76,7 @@ class CuotasCalc extends Component
 
         Prestamo::create($validatedData);
         session()->flash('message', 'Prestamos registrado correctamente');
+        $this->dispatchBrowserEvent('load-select');
         $this->resetInput();
     }
 
@@ -151,13 +152,13 @@ class CuotasCalc extends Component
 
     public function closeModal()
     {
-        $this->cuotas = null;
+        $this->cuotas = [];
     }
 
     public function downloadPdf()
     {
 
-        $this->cuotas = null;
+        $this->cuotas = [];
 
         $this->validate([
             'monto' => 'required',

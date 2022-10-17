@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12 col-xl-8 col-lg-12">
                     @if (session()->has('message'))
-                    <h5 class="alert alert-success">{{ session('message') }}</h5>
+                        <h5 class="alert alert-success">{{ session('message') }}</h5>
                     @endif
                     <div class="card card-plain h-100">
                         <div class="card-header pb-0 p-3">
@@ -20,9 +20,10 @@
                                     <div class="row">
                                         <div class="col-sm mb-3">
                                             <label>Monto</label>
-                                            <input type="number" wire:model.lazy="monto" class="form-control form-bord">
+                                            <input type="number" wire:model.lazy="monto"
+                                                class="form-control form-bord">
                                             @error('monto')
-                                            <span class="text-danger">{{ $message }}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
 
@@ -31,7 +32,7 @@
                                             <input type="number" wire:model.lazy="monto_cuota"
                                                 class="form-control form-bord">
                                             @error('monto_cuota')
-                                            <span class="text-danger">{{ $message }}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -43,78 +44,83 @@
                                                 class="form-control form-bord">
                                                 <option value=''>--Selecione--</option>
                                                 @foreach ($intereses as $interes)
-                                                <option value={{ $interes }}>{{ $interes }}</option>
+                                                    <option value={{ $interes }}>{{ $interes }}</option>
                                                 @endforeach
                                             </select>
                                             @error('interes_seleccionado')
-                                            <span class="text-danger">{{ $message }}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
 
                                         @if ($interes_seleccionado == 'PORCENTAJE')
-                                        <div class="col-sm mb-3">
-                                            <label>Interes</label>
-                                            <select name="interes" wire:model="interes" class="form-control form-bord">
-                                                <option value=''>--Selecione--</option>
-                                                @foreach ($porcentajes as $porcentaje)
-                                                <option value={{ $porcentaje }}>{{ $porcentaje }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('interes')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                            <div class="col-sm mb-3">
+                                                <label>Interes</label>
+                                                <select name="interes" wire:model="interes"
+                                                    class="form-control form-bord">
+                                                    <option value=''>--Selecione--</option>
+                                                    @foreach ($porcentajes as $porcentaje)
+                                                        <option value={{ $porcentaje }}>{{ $porcentaje }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('interes')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         @endif
 
                                         @if ($interes_seleccionado == 'FIJO')
-                                        <div class="col-sm mb-3">
                                             <div class="col-sm mb-3">
-                                                <label>Interes</label>
-                                                <input type="number" wire:model.lazy="interes"
-                                                    class="form-control form-bord">
-                                                @error('interes')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                                <div class="col-sm mb-3">
+                                                    <label>Interes</label>
+                                                    <input type="number" wire:model.lazy="interes"
+                                                        class="form-control form-bord">
+                                                    @error('interes')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
-                                        </div>
                                         @endif
                                     </div>
 
                                     <div class="mb-3">
                                         <label>Fecha de pago</label>
-                                        <input type="date" wire:model.lazy="fecha_pago" class="form-control form-bord">
+                                        <input type="date" wire:model.lazy="fecha_pago"
+                                            class="form-control form-bord">
                                         @error('fecha_pago')
-                                        <span class="text-danger">{{ $message }}</span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-sm mb-3">
-                                            <label>Cliente</label>
-                                            <select name="id_client" wire:model="id_client"
-                                                class="form-control form-bord">
-                                                <option value=''>--Selecione--</option>
-                                                @foreach ($clients as $client)
-                                                <option value={{ $client->id }}>
-                                                    {{ $client->nombres . ' ' . $client->apellidos }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                        <label>Cliente</label>
+                                        <div class="@error('id_client') is-invalid  @enderror">
+                                            <div class="col-sm mb-3" wire:ignore>
+                                                <select id="select2" name="id_client" wire:model="id_client"
+                                                    class="form-control form-bord">
+                                                    <option value=''>--Selecione--</option>
+                                                    @foreach ($clients as $client)
+                                                        <option value={{ $client->id }}>
+                                                            {{ $client->nombres . ' ' . $client->apellidos }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             @error('id_client')
-                                            <span class="text-danger">{{ $message }}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+
                                         <div class="col-sm mb-3">
                                             <label>Periocidad de pago</label>
                                             <select name="periocidad_pago" wire:model="periocidad_pago"
                                                 class="form-control form-bord">
                                                 <option value=''>--Selecione--</option>
                                                 @foreach ($periodicidades as $periocidad)
-                                                <option value={{ $periocidad }}>{{ $periocidad }}</option>
+                                                    <option value={{ $periocidad }}>{{ $periocidad }}</option>
                                                 @endforeach
                                             </select>
                                             @error('periocidad_pago')
-                                            <span class="text-danger">{{ $message }}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
@@ -124,22 +130,22 @@
                                             <label>Fotografía del Automovil</label>
                                             <input class="form-control form-bord" type="file" wire:model="img_auto">
                                             @error('img_auto')
-                                            <span class="text-danger">{{ $message }}</span>
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-sm mb-3">
                                             @if ($img_auto)
-                                            <div class="avatar avatar-xl position-relative">
-                                                <img src="{{ $img_auto->temporaryUrl() }}"
-                                                    class="w-100 border-radius-lg shadow-sm">
-                                            </div>
+                                                <div class="avatar avatar-xl position-relative">
+                                                    <img src="{{ $img_auto->temporaryUrl() }}"
+                                                        class="w-100 border-radius-lg shadow-sm">
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" wire:click="calcularCuotas()"
+                                    <button type="button" class="btn btn-primary" wire:click="calcularCuotas"
                                         data-bs-toggle="modal" data-bs-target="#cuotasModal">Calcular
                                         Cuotas</button>
 
@@ -158,6 +164,22 @@
             const cuotasModal = document.getElementById('cuotasModal');
             const modal1 = bootstrap.Modal.getInstance(cuotasModal)
             if (modal1 != null) modal1.hide();
+        })
+
+        window.addEventListener('load-select', event => {
+            $('#select2').select2();
+            $('#select2').on('change', function() {
+                @this.set('id_client', this.value)
+            });
+        })
+    </script>
+
+    <script>
+        document.addEventListener('livewire:load', function() {
+            $('#select2').select2();
+            $('#select2').on('change', function() {
+                @this.set('id_client', this.value)
+            });
         })
     </script>
 </div>

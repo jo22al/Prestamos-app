@@ -32,24 +32,24 @@ class CuotasCalc extends Component
     public $cuota_minima;
 
 
-    protected function rules()
-    {
-        return [
-            'monto' => 'required',
-            'monto_cuota' => 'required',
-            'interes_seleccionado' => 'required',
-            'interes' => 'required',
-            'fecha_pago' => 'required',
-            'periocidad_pago' => 'required',
-            'img_auto' => 'image|mimes:jpg,jpeg,png',
-            'id_client' => 'required'
-        ];
-    }
+    // protected function rules()
+    // {
+    //     return [
+    //         'monto' => 'required',
+    //         'monto_cuota' => 'required',
+    //         'interes_seleccionado' => 'required',
+    //         'interes' => 'required',
+    //         'fecha_pago' => 'required',
+    //         'periocidad_pago' => 'required',
+    //         'img_auto' => 'image|mimes:jpg,jpeg,png',
+    //         'id_client' => 'required'
+    //     ];
+    // }
 
-    public function updated($fields)
-    {
-        $this->validateOnly($fields);
-    }
+    // public function updated($fields)
+    // {
+    //     $this->validateOnly($fields);
+    // }
 
     public function savePrestamo()
     {

@@ -36,7 +36,7 @@
                                     <tbody>
                                         @forelse ($cuotas as $cuota => $value)
                                             <tr>
-                                                {{-- <td>{{ $value->fecha_pago }}</td> --}}
+                                                <td>{{ $value->fecha_pago }}</td>
                                                 <td>{{ $value->monto_couta }}</td>
                                                 <td>{{ $value->interes }}</td>
                                                 <td>{{ $value->total_interes }}</td>

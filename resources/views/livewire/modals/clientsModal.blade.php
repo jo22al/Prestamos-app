@@ -1,7 +1,7 @@
 <!-- Insert Modal -->
 <div wire:ignore.self class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="clientModalLabel">Nuevo Cliente</h5>
@@ -17,20 +17,23 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
           </div>
-          <div class="mb-3">
-            <label>Nombres</label>
-            <input type="text" wire:model.lazy="nombres" class="form-control form-bord">
-            @error('nombres')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
-          <div class="mb-3">
-            <label>Apellidos</label>
-            <input type="text" wire:model.lazy="apellidos" class="form-control form-bord">
-            @error('apellidos')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
+          <div class="row">
+            <div class="col-sm mb-3">
+              <label>Nombres</label>
+              <input type="text" wire:model.lazy="nombres" class="form-control form-bord">
+              @error('nombres')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="col-sm mb-3">
+              <label>Apellidos</label>
+              <input type="text" wire:model.lazy="apellidos" class="form-control form-bord">
+              @error('apellidos')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+        </div>
           <div class="mb-3">
             @if ($foto)
             Prev:

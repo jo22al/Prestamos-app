@@ -95,6 +95,34 @@
                     <span class="nav-link-text ms-1">Pagos</span>
                 </a>
             </li>
+
+            <li>
+                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+
+                    <i class="material-icons opacity-10">local_atm</i> <span
+                        class="ms-1 d-none d-sm-inline">Reportes</span></a>
+
+                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ Route::currentRouteName() == 'reportes' ? ' active bg-gradient-primary' : '' }} "
+                            href="{{ route('reportes') }}">
+                            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="material-icons opacity-10">local_atm</i>
+                            </div>
+                            <span class="nav-link-text ms-1">Pagos Realizados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ Route::currentRouteName() == 'reportespagos' ? ' active bg-gradient-primary' : '' }} "
+                            href="{{ route('reportespagos') }}">
+                            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="material-icons opacity-10">local_atm</i>
+                            </div>
+                            <span class="nav-link-text ms-1">Proximos Pagos</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </aside>

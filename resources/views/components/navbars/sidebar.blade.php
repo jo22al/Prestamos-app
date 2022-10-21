@@ -97,10 +97,13 @@
             </li>
 
             <li>
-                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                <div style="padding-left: 13px">
+                    <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                        <i class="material-icons opacity-10">local_atm</i>
+                        <span class="ms-1 d-none d-sm-inline">Reportes</span>
+                    </a>
+                </div>
 
-                    <i class="material-icons opacity-10">local_atm</i> <span
-                        class="ms-1 d-none d-sm-inline">Reportes</span></a>
 
                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                     <li class="nav-item">

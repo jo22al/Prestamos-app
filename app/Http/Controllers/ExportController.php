@@ -19,7 +19,7 @@ class ExportController extends Controller
         $to   = $this->stringToCarbon($toDate)->endOfDay();
         $user = 'Todos';
 
-        $query = Pago::whereBetween('pagos.created_at', [$from, $to]);
+        $query = Pago::whereBetween('pagos.fecha_pago', [$from, $to]);
         $query->join('prestamos', 'prestamos.id', '=', 'pagos.id_prestamo');
         $query->join('clients', 'clients.id', '=', 'prestamos.id_client');
         $query->select(
@@ -32,11 +32,11 @@ class ExportController extends Controller
         );
 
         if ($clientId) {
-            $query->where('prestamos.id', $clientId);
+            $query->where('prestamos.id_client', $clientId);
             $user = Client::find($clientId)->nombres;
         }
 
-        $pagos = $query->get();
+        $pagos = $query->orderBy('fecha_pago', 'ASC')->get();
 
         $pdf = Pdf::loadView(
             'pdf.report',

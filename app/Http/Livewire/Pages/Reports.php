@@ -49,7 +49,7 @@ class Reports extends Component
             $from = Carbon::parse($this->fromDate)->startOfDay();
             $to   = Carbon::parse($this->toDate)->endOfDay();
 
-            $query = Pago::whereBetween('pagos.created_at', [$from, $to]);
+            $query = Pago::whereBetween('pagos.fecha_pago', [$from, $to]);
             $query->join('prestamos', 'prestamos.id', '=', 'pagos.id_prestamo');
             $query->join('clients', 'clients.id', '=', 'prestamos.id_client');
             $query->select(
@@ -62,10 +62,10 @@ class Reports extends Component
             );
 
             if ($this->clientId) {
-                $query->where('prestamos.id', $this->clientId);
+                $query->where('prestamos.id_client', $this->clientId);
             }
 
-            $this->pagos = $query->get();
+            $this->pagos = $query->orderBy('fecha_pago', 'ASC')->get();
         }
     }
 

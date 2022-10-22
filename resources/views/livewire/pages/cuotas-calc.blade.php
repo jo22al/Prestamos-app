@@ -168,7 +168,7 @@
                                             data-bs-target="#cuotasModal">Calcular
                                             Cuotas</button>
 
-                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                        <button type="submit" @if($isUploading == true) disabled @endif class="btn btn-success">Guardar</button>
                                     </div>
                                 </form>
                             </div>

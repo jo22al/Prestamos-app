@@ -60,6 +60,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reports/pdf/{client}/{from_date?}/{to_date?}', [ExportController::class, 'reportPdf'])
         ->name('reportPdf');
     Route::get('reportes/pagos', ReportsPagos::class)->name('reportespagos');
-    Route::get('/reports/pagos/pdf/{client}/{from_date?}/{to_date?}', [ExportController::class, 'reportPdf'])
-        ->name('reportPdf');
+    Route::get('/reports/pagos/pdf/{tipo_pago}/{typeReportName}', [ExportController::class, 'reportPdfPagos'])
+        ->name('reportPdf2');
 });

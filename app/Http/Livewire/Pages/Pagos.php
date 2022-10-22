@@ -18,14 +18,14 @@ class Pagos extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $id_prestamo, $monto, $fecha_pago, $tipo_de_evidencia, $img_deposito;
+    public $id_prestamo, $monto, $monto_minimo, $fecha_pago, $tipo_de_evidencia, $img_deposito;
     public $search;
 
     protected function rules()
     {
         return [
             'id_prestamo' => 'required',
-            'monto' => 'required',
+            'monto' => 'required|numeric|min:' . $this->monto_minimo,
             'fecha_pago' => 'required',
             'tipo_de_evidencia' => 'required',
             'img_deposito' => 'required|image|mimes:jpg,jpeg,png',
@@ -40,11 +40,11 @@ class Pagos extends Component
             $validatedData['img_deposito'] = $this->img_deposito->store('depositos', 'public');
         }
 
-        
-        
+
+
         $prestamo = Prestamo::select('*')
-                    ->where('id', $validatedData['id_prestamo'])
-                    ->first();
+            ->where('id', $validatedData['id_prestamo'])
+            ->first();
 
 
         $nuevo_saldo = DB::select('call SP_PAGOS(?,?,?,?,?,?,?)', array(
@@ -72,6 +72,7 @@ class Pagos extends Component
     {
         $res = Prestamo::select('*')->where('id', $prestamo_id)->first();
         $this->monto = $res->monto_cuota;
+        $this->monto_minimo = $res->monto_cuota;
     }
 
     public function closeModal()

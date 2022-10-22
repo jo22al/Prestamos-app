@@ -9,6 +9,19 @@
                 @endforeach
             </select>
         </div>
+
+        {{-- <div>
+            <div class="col-sm mb-3" wire:ignore>
+                <select id="select2" name="id_client" wire:model="id_client" class="form-control form-bord">
+                    <option value=0>Todos</option>
+                    @foreach ($clients as $client)
+                    <option value={{ $client->id }}>
+                        {{ $client->nombres . ' ' . $client->apellidos }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div> --}}
     </div>
 
     <div class="col-12">
@@ -34,4 +47,13 @@
             </a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('livewire:load', function() {
+        $('#select2').select2();
+        $('#select2').on('change', function() {
+            @this.set('clientId', this.value)
+        });
+    })
+    </script>
 </div>

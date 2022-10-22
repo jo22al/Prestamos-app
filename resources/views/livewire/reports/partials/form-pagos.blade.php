@@ -17,7 +17,7 @@
             </button>
         </div>
         <div class="row">
-            <a href="{{ url("reports/pdf/$clientId/$fromDate/$toDate") }}"
+            <a href="{{ url("reports/pagos/pdf/$tipo_pago/$typeReportName") }}"
                 class="col btn full-width btn-dark btn-block{{ !$pagos->count() ? ' disabled' : '' }}" target="_blank">
                 Generar PDF
             </a>

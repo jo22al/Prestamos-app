@@ -23,9 +23,9 @@
                 Sistema de Prestamos
             </h1>
             <div class="text-company">
-                {{-- <div class="font-weight-bold fs-18">
+                <div class="font-weight-bold fs-18">
                     Reporte de: {{$typeReportName}}
-                </div> --}}
+                </div>
                 {{-- <div class="fs-16">
                     Fecha: {{ $from->eq($to) ? $from->format('d/m/Y') : "{$from->format('d/m/Y')} al
                     {$to->format('d/m/Y')}" }}
@@ -40,24 +40,19 @@
             <table cellpadding="0" cellspacing="0" class="table-items" width="100%">
                 <thead>
                     <tr>
-                        <th width="17%">Fecha de Pago</th>
-                        <th width="17%">Cuota</th>
-                        <th width="17%">Interes</th>
-                        <th width="17%">Total Interes</th>
-                        <th width="17%">Capital</th>
-                        <th width="15%">Saldo</th>
-
+                        <th width="20%">Nombre</th>
+                        <th width="20%">Monto Prestamo</th>
+                        <th width="20%">Saldo</th>
+                        <th width="20%">Fecha de Pago</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($result as $cuota => $value)
+                    @forelse ($pagos as $pago)
                     <tr>
-                        <td align="center">{{ $value->fecha_pago }}</td>
-                        <td align="center">{{ $value->monto_couta }}</td>
-                        <td align="center">{{ $value->interes }}</td>
-                        <td align="center">{{ $value->total_interes }}</td>
-                        <td align="center">{{ $value->capital }}</td>
-                        <td align="center">{{ $value->saldo }}</td>
+                        <td align="center">{{ $pago->nombres . " " . $pago->apellidos}}</td>
+                        <td align="center">{{ $pago->prestamoMonto}}</td>
+                        <td align="center">{{ $pago->prestamoSaldo }}</td>
+                        <td align="center">{{ $pago->fecha_pago }}</td>
                     </tr>
                     @empty
                     <tr>
@@ -67,11 +62,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    
-    <div>
-        <h2 style="margin-top: 10px; margin-bottom: 5px">Firma:</h2>
-        <hr style="width:50%;text-align:left;margin-left:0">
     </div>
 
     <div class="footer">

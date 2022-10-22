@@ -62,7 +62,7 @@ class Reports extends Component
             );
 
             if ($this->clientId) {
-                $query->where('pagos.id', $this->clientId);
+                $query->where('prestamos.id', $this->clientId);
             }
 
             $this->pagos = $query->get();

@@ -65,5 +65,22 @@
             const modal1 = bootstrap.Modal.getInstance(pagoModal)
             if (modal1 != null) modal1.hide();
         })
+
+        window.addEventListener('load-select', event => {
+            $('#select2').select2();
+            $('#select2').on('change', function() {
+                @this.set('id_prestamo', this.value)
+            });
+        })
+    </script>
+
+
+    <script>
+        document.addEventListener('livewire:load', function() {
+        $('#select2').select2();
+        $('#select2').on('change', function() {
+            @this.set('id_prestamo', this.value)
+        });
+    })
     </script>
 </div>

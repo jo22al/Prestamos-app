@@ -11,7 +11,7 @@
       <form wire:submit.prevent="savePago">
         <div class="modal-body">
 
-          <div class="col-sm mb-3">
+          {{-- <div class="col-sm mb-3">
             <label>Prestamo</label>
             <select name="periocidad_pago" wire:model="id_prestamo" class="form-control form-bord">
               <option value=''>--Selecione--</option>
@@ -23,50 +23,79 @@
             @error('id_prestamo')
             <span class="text-danger">{{ $message }}</span>
             @enderror
-          </div>
+          </div> --}}
 
-          @if (!is_null($monto))
-          <div class="mb-3">
-            <label>Cuota</label>
-            <input type="number" wire:model.lazy="monto" class="form-control form-bord" readonly>
-            @error('monto')
+          {{-- <d class="col-sm mb-3">
+            <label>Prestamo</label>
+            <select name="periocidad_pago" wire:model="id_prestamo" class="form-control form-bord">
+              <option value=''>--Selecione--</option>
+              @foreach ($prestamos as $prestamo)
+              <option value={{ $prestamo->id }}>{{ $prestamo->client->nombres . ' ' . $prestamo->client->apellidos }}
+              </option>
+              @endforeach
+            </select>
+            @error('id_prestamo')
             <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div class="mb-3">
-            <label>Fecha</label>
-            <input type="date" wire:model.lazy="fecha_pago" class="form-control form-bord">
-            @error('fecha_pago')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div class="mb-3">
-            <label>Tipo de Evidencia</label>
-            <input type="text" wire:model.lazy="tipo_de_evidencia" class="form-control form-bord">
-            @error('tipo_de_evidencia')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div class="row">
-            <div class="col-sm mb-3">
-              <label>Deposito</label>
-              <input class="form-control form-bord" type="file" wire:model="img_deposito">
-              @error('img_deposito')
+            @enderror --}}
+            <label>Prestamo</label>
+            <div class="@error('id_prestamo') is-invalid  @enderror">
+              <div wire:ignore>
+                <select style="width: 100%" id="select2" name="id_prestamo" wire:model="id_prestamo" class="form-control form-bord">
+                  <option value=''>--Selecione--</option>
+                  @foreach ($prestamos as $prestamo)
+                  <option value={{ $prestamo->id }}>{{ $prestamo->client->nombres . ' ' . $prestamo->client->apellidos
+                    }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+              @error('id_prestamo')
               <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
-            <div class="col-sm mb-3">
-              @if ($img_deposito)
-              <div class="avatar avatar-xl position-relative">
-                <img src="{{ $img_deposito->temporaryUrl() }}" class="w-100 border-radius-lg shadow-sm">
-              </div>
-              @endif
+
+            @if (!is_null($monto))
+            <div class="mb-3">
+              <label>Cuota</label>
+              <input type="number" wire:model.lazy="monto" class="form-control form-bord">
+              @error('monto')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
             </div>
-          </div>
-          @endif
+
+            <div class="mb-3">
+              <label>Fecha</label>
+              <input type="date" wire:model.lazy="fecha_pago" class="form-control form-bord">
+              @error('fecha_pago')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="mb-3">
+              <label>Tipo de Evidencia</label>
+              <input type="text" wire:model.lazy="tipo_de_evidencia" class="form-control form-bord">
+              @error('tipo_de_evidencia')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="row">
+              <div class="col-sm mb-3">
+                <label>Deposito</label>
+                <input class="form-control form-bord" type="file" wire:model="img_deposito">
+                @error('img_deposito')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+              </div>
+              <div class="col-sm mb-3">
+                @if ($img_deposito)
+                <div class="avatar avatar-xl position-relative">
+                  <img src="{{ $img_deposito->temporaryUrl() }}" class="w-100 border-radius-lg shadow-sm">
+                </div>
+                @endif
+              </div>
+            </div>
+            @endif
 
 
         </div>

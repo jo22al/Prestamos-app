@@ -30,6 +30,7 @@ class CuotasCalc extends Component
         $id_client;
 
     public $cuota_minima;
+    public $isUploading = false;
 
 
     // protected function rules()

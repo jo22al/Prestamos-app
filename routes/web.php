@@ -12,6 +12,7 @@ use App\Http\Livewire\Pages\CuotasCalc;
 use App\Http\Livewire\Pages\Pagos;
 use App\Http\Livewire\Pages\Prestamos;
 use App\Http\Livewire\Pages\PrestamosDetalle;
+use App\Http\Livewire\Pages\ReportIngresos;
 use App\Http\Livewire\Pages\Reports;
 use App\Http\Livewire\Pages\ReportsPagos;
 use App\Http\Livewire\Pages\ShowClient;
@@ -57,9 +58,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('prestamos/{id}', PrestamosDetalle::class)->name('prestamo');
     Route::get('pagos', Pagos::class)->name('pagos');
     Route::get('reportes', Reports::class)->name('reportes');
+    Route::get('ingresos', ReportIngresos::class)->name('ingresos');
     Route::get('/reports/pdf/{client}/{from_date?}/{to_date?}', [ExportController::class, 'reportPdf'])
         ->name('reportPdf');
     Route::get('reportes/pagos', ReportsPagos::class)->name('reportespagos');
     Route::get('/reports/pagos/pdf/{tipo_pago}/{typeReportName}', [ExportController::class, 'reportPdfPagos'])
         ->name('reportPdf2');
+
+    Route::get('/clientes/reporte/pdf', [ExportController::class, 'reportePdfClientes']);
 });

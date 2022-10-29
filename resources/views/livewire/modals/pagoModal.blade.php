@@ -64,6 +64,14 @@
             </div>
 
             <div class="mb-3">
+              <label>Mora</label>
+              <input type="number" wire:model.lazy="mora" class="form-control form-bord">
+              @error('mora')
+              <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="mb-3">
               <label>Fecha</label>
               <input type="date" wire:model.lazy="fecha_pago" class="form-control form-bord">
               @error('fecha_pago')

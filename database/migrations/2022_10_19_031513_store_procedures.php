@@ -94,7 +94,8 @@ return new class extends Migration
             IN tipo_interes varchar(25),
             IN interes double,
             IN periodicidad varchar(25),
-            IN monto_couta float)
+            IN monto_couta float,
+            IN mora float)
         BEGIN
         
             DECLARE capital        DOUBLE DEFAULT 0;
@@ -123,7 +124,7 @@ return new class extends Migration
                 SET total_interes = interes;
             END IF;
         
-            SET capital = ROUND((monto_couta - total_interes), 2);
+            SET capital = ROUND(((monto_couta - total_interes) - mora), 2);
         
             SET saldo = ROUND((saldo - capital), 2);
         

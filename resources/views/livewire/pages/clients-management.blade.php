@@ -11,14 +11,28 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Clientes
-                            <input type="search" wire:model="search" class="form-control float-end mx-2"
+                        <h4>Clientes </h4>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <a href="{{ url("/clientes/reporte/pdf") }}"
+                                   class="btn btn-primary"
+                                    target="_blank">
+                                    Descargar reporte
+                                </a>
+                            </div>
+
+                            <div class="col-sm-8">
+                                <input type="search" wire:model="search" class="form-control float-end mx-2"
                                 placeholder="Buscar..." style="width: 230px" />
                             <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
                                 data-bs-target="#clientModal">
                                 Agregar nuevo cliente
                             </button>
-                        </h4>
+                            </div>
+
+                            
+                        </div>
+                            
                     </div>
                     <div class="card-body">
                         <table class="table table-borderd table-striped">

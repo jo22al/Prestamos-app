@@ -27,7 +27,9 @@
                                     <th>Id</th>
                                     <th>Id prestamo</th>
                                     <th>Monto</th>
+                                    <th>Mora</th>
                                     <th>Fecha de pago</th>
+                                    <th>Evidencia</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,7 +37,8 @@
                                 <tr>
                                     <td>{{ $pago->id }}</td>
                                     <td>{{ $pago->id_prestamo }}</td>
-                                    <td>{{ $pago->monto }}</td>
+                                    <td>Q. {{ $pago->monto }}</td>
+                                    <td>Q. {{ $pago->mora }}</td>
                                     <td>{{ $pago->fecha_pago }}</td>
                                     <td>
                                         <div class="avatar avatar-xl position-relative">

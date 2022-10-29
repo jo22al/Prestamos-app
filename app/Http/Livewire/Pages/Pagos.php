@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use App\Models\Pago;
 use App\Models\Prestamo;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -18,7 +19,7 @@ class Pagos extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $id_prestamo, $monto, $monto_minimo, $fecha_pago, $tipo_de_evidencia, $img_deposito;
+    public $id_prestamo, $monto, $mora = 0, $monto_minimo, $fecha_pago, $tipo_de_evidencia, $img_deposito;
     public $search;
 
     protected function rules()
@@ -26,6 +27,7 @@ class Pagos extends Component
         return [
             'id_prestamo' => 'required',
             'monto' => 'required|numeric|min:' . $this->monto_minimo,
+            'mora' => 'required',
             'fecha_pago' => 'required',
             'tipo_de_evidencia' => 'required',
             'img_deposito' => 'required|image|mimes:jpg,jpeg,png',
@@ -47,7 +49,7 @@ class Pagos extends Component
             ->first();
 
 
-        $nuevo_saldo = DB::select('call SP_PAGOS(?,?,?,?,?,?,?)', array(
+        $nuevo_saldo = DB::select('call SP_PAGOS(?,?,?,?,?,?,?,?)', array(
             $validatedData['id_prestamo'],
             $prestamo->saldo,
             $prestamo->fecha_pago,
@@ -55,6 +57,7 @@ class Pagos extends Component
             $prestamo->interes,
             $prestamo->periocidad_pago,
             $validatedData['monto'],
+            $validatedData['mora'],
         ));
 
 
@@ -66,6 +69,27 @@ class Pagos extends Component
         session()->flash('message', 'Pago registrado correctamente');
         $this->resetInput();
         $this->dispatchBrowserEvent('close-modal');
+
+        $pdf = Pdf::loadView(
+            'pdf.recibo-pago', [
+                'fecha' => $validatedData['fecha_pago'],
+                'nombres' => $prestamo->client->nombres,
+                'apellidos' => $prestamo->client->apellidos,
+                'direccion' => $prestamo->client->direccion_personal,
+                'interes' => $prestamo->interes,
+                'tipoInteres' => $prestamo->interes_seleccionado,
+                'saldoAnterior' => $validatedData['saldo_anterior'],
+                'montoPagado' => $validatedData['monto'],
+                'mora' => $validatedData['mora'],
+                'saldoPendiente' => $validatedData['nuevo_saldo'],
+            ]
+            )->output();
+
+        return response()->streamDownload(
+            fn () => print($pdf),
+            'recibo.pdf'
+        );
+
     }
 
     public function updatedIdPrestamo($prestamo_id)

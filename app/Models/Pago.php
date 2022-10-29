@@ -13,6 +13,7 @@ class Pago extends Model
     protected $fillable = [
         'id_prestamo',
         'monto',
+        'mora',
         'fecha_pago',
         'tipo_de_evidencia',
         'img_deposito',

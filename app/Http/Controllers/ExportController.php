@@ -51,12 +51,15 @@ class ExportController extends Controller
         $today = Carbon::today()->toDateString();
         $pagos = [];
 
+        $currentWeek = Carbon::today()->addDays(7)->toDateString();
+        $pastWeek = Carbon::today()->subDays(7)->toDateString();
+
         if ($tipo_pago == 0) {
             $query = Prestamo::where('fecha_pago', '<', '2100-12-12');
         } else if ($tipo_pago == 1) {
-            $query = Prestamo::where('fecha_pago', '>=', $today);
+            $query = Prestamo::whereBetween('fecha_pago', [$today, $currentWeek]);
         } else if ($tipo_pago == 2) {
-            $query = Prestamo::where('fecha_pago', '<', $today);
+            $query = Prestamo::whereBetween('fecha_pago', [$today, $pastWeek]);
         }
 
         $query->join('clients', 'clients.id', '=', 'prestamos.id_client');
@@ -86,5 +89,18 @@ class ExportController extends Controller
         }
 
         return Carbon::parse($date);
+    }
+
+
+    public function reportePdfClientes()
+    {
+        $user = 'Todos';
+        $clients = Client::all();
+        $pdf = Pdf::loadView(
+            'livewire.export.clientes-reporte',
+            compact('clients')
+        );
+
+       return $pdf->stream('reporteClientes.pdf');
     }
 }

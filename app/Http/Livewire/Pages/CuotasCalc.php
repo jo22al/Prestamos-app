@@ -32,26 +32,6 @@ class CuotasCalc extends Component
     public $cuota_minima;
     public $isUploading = false;
 
-
-    // protected function rules()
-    // {
-    //     return [
-    //         'monto' => 'required',
-    //         'monto_cuota' => 'required',
-    //         'interes_seleccionado' => 'required',
-    //         'interes' => 'required',
-    //         'fecha_pago' => 'required',
-    //         'periocidad_pago' => 'required',
-    //         'img_auto' => 'image|mimes:jpg,jpeg,png',
-    //         'id_client' => 'required'
-    //     ];
-    // }
-
-    // public function updated($fields)
-    // {
-    //     $this->validateOnly($fields);
-    // }
-
     public function savePrestamo()
     {
         $this->cuotas = [];
@@ -104,6 +84,7 @@ class CuotasCalc extends Component
             'interes' => 'required',
             'fecha_pago' => 'required',
             'periocidad_pago' => 'required',
+            'id_client' => 'required'
         ]);
 
         $result = DB::select('call SP_CUOTAS(?,?,?,?,?,?)', array(
@@ -168,7 +149,10 @@ class CuotasCalc extends Component
             'interes' => 'required',
             'fecha_pago' => 'required',
             'periocidad_pago' => 'required',
+            'id_client' => 'required'
         ]);
+
+        $client = Client::where('id', $this->id_client)->get()->first();
 
         $result = DB::select('call SP_CUOTAS(?,?,?,?,?,?)', array(
             $this->monto,
@@ -180,7 +164,10 @@ class CuotasCalc extends Component
         ));
 
         $this->cuotas = $result;
-        $pdf = Pdf::loadView('livewire.export.cuotas', ['result' => $result])->output();
+        $pdf = Pdf::loadView('livewire.export.cuotas', [
+            'result' => $result,
+            'client' => $client
+            ])->output();
 
         return response()->streamDownload(
             fn () => print($pdf),

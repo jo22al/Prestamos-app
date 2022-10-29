@@ -4,8 +4,8 @@
         <div class="form-group">
             <select class="form-control form-bord" wire:model.lazy="tipo_pago">
                 <option value=0>Todos</option>
-                <option value=1>Proximos Pagos</option>
-                <option value=2>Pagos Retrasados</option>
+                <option value=1>Pagos de esta semana</option>
+                <option value=2>Pagos de la semana pasada</option>
             </select>
         </div>
     </div>

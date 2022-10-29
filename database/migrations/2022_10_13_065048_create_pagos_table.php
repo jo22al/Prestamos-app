@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_prestamo');
             $table->float('monto');
+            $table->float('mora')->default(0);
             $table->date('fecha_pago');
             $table->string('tipo_de_evidencia');
             $table->string('img_deposito');
